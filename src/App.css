@@ -1,4 +1,3 @@
-/* Layout base */
 .app {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -7,7 +6,6 @@
   min-height: 100vh;
 }
 
-/* Login styling */
 .login {
   display: flex;
   flex-direction: column;
@@ -31,7 +29,6 @@
   background-color: #005fa3;
 }
 
-/* Welcome banner */
 .welcome-banner {
   display: flex;
   justify-content: space-between;
@@ -55,7 +52,6 @@
   border-radius: 10px;
 }
 
-/* Logout button */
 .logout-btn {
   background-color: #e53935;
   color: white;
@@ -70,16 +66,18 @@
   background-color: #c62828;
 }
 
-/* Dashboard sections */
 .dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .main-dashboard {
   flex: 3;
 }
 
-/* Metric cards */
 .metrics {
   display: flex;
   justify-content: center;
@@ -109,7 +107,6 @@
 .delivered { background-color: #d4edda; }
 .issues { background-color: #f8d7da; }
 
-/* Chart section */
 .chart {
   max-width: 700px;
   margin: 3rem auto;
@@ -119,7 +116,6 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Order data list */
 .order-data {
   background-color: #ffffff;
   border-radius: 10px;
@@ -142,4 +138,35 @@
 .order-data li {
   padding: 0.4rem 0;
   border-bottom: 1px solid #eee;
+}
+
+.delivery-right-pane {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 350px;
+}
+.delivery-right-pane h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.delivery-right-pane ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+.delivery-right-pane li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+.delivery-right-pane a {
+  color: #0078d4;
+  text-decoration: none;
+}
+.delivery-right-pane a:hover {
+  text-decoration: underline;
 }
