@@ -1,3 +1,4 @@
+/* Base layout */
 .app {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -6,6 +7,7 @@
   min-height: 100vh;
 }
 
+/* Login Styling */
 .login {
   display: flex;
   flex-direction: column;
@@ -29,6 +31,7 @@
   background-color: #005fa3;
 }
 
+/* Welcome Banner */
 .welcome-banner {
   display: flex;
   justify-content: space-between;
@@ -52,6 +55,7 @@
   border-radius: 10px;
 }
 
+/* Logout Button */
 .logout-btn {
   background-color: #e53935;
   color: white;
@@ -66,6 +70,7 @@
   background-color: #c62828;
 }
 
+/* Dashboard Container */
 .dashboard-container {
   display: flex;
   justify-content: space-between;
@@ -73,11 +78,11 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .main-dashboard {
   flex: 3;
 }
 
+/* Metric Cards */
 .metrics {
   display: flex;
   justify-content: center;
@@ -107,6 +112,7 @@
 .delivered { background-color: #d4edda; }
 .issues { background-color: #f8d7da; }
 
+/* Chart Section */
 .chart {
   max-width: 700px;
   margin: 3rem auto;
@@ -116,6 +122,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* Order List View */
 .order-data {
   background-color: #ffffff;
   border-radius: 10px;
@@ -139,7 +146,33 @@
   padding: 0.4rem 0;
   border-bottom: 1px solid #eee;
 }
+.order-link {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #0078d4;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.order-link:hover {
+  color: #004a99;
+}
 
+/* Order Detail View */
+.order-detail {
+  background: #ffffff;
+  max-width: 600px;
+  margin: 1rem auto 2rem;
+  padding: 1rem;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.order-detail p {
+  margin: 0.3rem 0;
+}
+
+/* Delivery Side Pane */
 .delivery-right-pane {
   flex: 1;
   background-color: #ffffff;
