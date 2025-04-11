@@ -1,15 +1,61 @@
-.header {
+/* Layout base */
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 2rem;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+/* Login styling */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.login input {
+  padding: 0.5rem;
+  width: 250px;
+}
+.login button {
+  padding: 0.5rem 1rem;
+  background: #0078d4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.login button:hover {
+  background-color: #005fa3;
+}
+
+/* Welcome banner */
+.welcome-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  padding: 1rem;
-  background-color: #ffffff;
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.welcome-text h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+.welcome-text span {
+  color: #0078d4;
+  font-weight: bold;
+}
+.welcome-banner img {
+  width: 200px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* Logout button */
 .logout-btn {
   background-color: #e53935;
   color: white;
@@ -18,70 +64,30 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  margin-top: 1rem;
 }
-
 .logout-btn:hover {
   background-color: #c62828;
 }
 
-.welcome-images {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.welcome-images img {
-  width: 200px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
+/* Dashboard sections */
 .dashboard-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .main-dashboard {
   flex: 3;
 }
 
-.delivery-right-pane {
-  flex: 1;
-  background-color: #ffffff;
-  padding: 1.5rem;
-  margin-top: 1rem;
-  margin-left: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* Metric cards */
+.metrics {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
-
-.delivery-right-pane h2 {
-  margin-bottom: 1rem;
-}
-
-.delivery-right-pane ul {
-  list-style: none;
-  padding: 0;
-}
-
-.delivery-right-pane li {
-  margin-bottom: 0.5rem;
-}
-
-.delivery-right-pane a {
-  color: #0078d4;
-  text-decoration: none;
-}
-
-.delivery-right-pane a:hover {
-  text-decoration: underline;
-}
-
-.metrics a {
+.metrics .card {
   padding: 1.5rem 2rem;
   border-radius: 10px;
   font-weight: bold;
@@ -92,22 +98,18 @@
   transition: transform 0.2s;
   text-decoration: none;
   color: black;
-  display: inline-block;
+  cursor: pointer;
+  border: none;
 }
-
+.metrics .card:hover {
+  transform: scale(1.05);
+}
 .total { background-color: #e3f2fd; }
 .in-transit { background-color: #fff3cd; }
 .delivered { background-color: #d4edda; }
 .issues { background-color: #f8d7da; }
 
-.metrics {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
+/* Chart section */
 .chart {
   max-width: 700px;
   margin: 3rem auto;
@@ -115,4 +117,29 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Order data list */
+.order-data {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  text-align: left;
+}
+.order-data h3 {
+  margin-top: 0;
+  color: #333;
+}
+.order-data ul {
+  list-style: none;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.order-data li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
 }
