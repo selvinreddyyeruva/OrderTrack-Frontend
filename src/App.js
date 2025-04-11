@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-const App = () => {
+// Register chart.js modules
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,13 +30,29 @@ const App = () => {
 
   const chartData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    datasets: [{
-      label: 'Orders',
-      data: [5, 9, 3, 7, 10],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }]
+    datasets: [
+      {
+        label: 'Orders',
+        data: [12, 19, 8, 15, 23],
+        fill: false,
+        backgroundColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.3,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Order Trends This Week',
+      },
+    },
   };
 
   return (
@@ -32,8 +60,18 @@ const App = () => {
       {!isLoggedIn ? (
         <div className="login">
           <h2>Login to OrderTrack</h2>
-          <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button onClick={handleLogin}>Login</button>
         </div>
       ) : (
@@ -46,12 +84,12 @@ const App = () => {
             <div className="card issues">Issues: 4</div>
           </div>
           <div className="chart">
-            <Line data={chartData} />
+            <Line data={chartData} options={chartOptions} />
           </div>
         </>
       )}
     </div>
   );
-};
+}
 
 export default App;
