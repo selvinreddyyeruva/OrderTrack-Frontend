@@ -18,6 +18,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const savedLogin = localStorage.getItem("isLoggedIn");
@@ -40,20 +41,19 @@ function App() {
     setPassword('');
   };
 
-  const deliveryList = [
-    { name: 'Ankit Sharma', address: '123 Canal Street, New Orleans, LA' },
-    { name: 'Priya Mehra', address: '456 Bourbon St, New Orleans, LA' },
-    { name: 'Ravi Kumar', address: '789 Decatur St, New Orleans, LA' },
-    { name: 'Neha Reddy', address: '1010 Frenchmen St, New Orleans, LA' },
-  ];
+  const orders = {
+    all: Array.from({ length: 125 }, (_, i) => `Order #${i + 1}`),
+    transit: Array.from({ length: 58 }, (_, i) => `Transit Order #${i + 1}`),
+    delivered: Array.from({ length: 63 }, (_, i) => `Delivered Order #${i + 1}`),
+    issues: Array.from({ length: 4 }, (_, i) => `Issue Order #${i + 1}`),
+  };
 
   const chartData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
     datasets: [{
       label: 'Orders',
       data: [12, 19, 8, 15, 23],
-      fill: false,
-      backgroundColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgba(75, 192, 192, 0.3)',
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.3,
     }],
@@ -67,6 +67,29 @@ function App() {
     },
   };
 
+  const renderOrderList = () => {
+    const list = activeSection === 'all'
+      ? orders.all
+      : activeSection === 'transit'
+      ? orders.transit
+      : activeSection === 'delivered'
+      ? orders.delivered
+      : activeSection === 'issues'
+      ? orders.issues
+      : [];
+
+    return (
+      <div className="order-data">
+        <h3>{activeSection && `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Orders`}</h3>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="app">
       {!isLoggedIn ? (
@@ -78,41 +101,28 @@ function App() {
         </div>
       ) : (
         <>
-          <div className="header">
-            <h1>Welcome Rohith Selvin Reddy Yeruva !!!</h1>
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
-          </div>
-
-          <div className="welcome-images">
-            <img src="https://www.jotform.com/blog/wp-content/uploads/2020/05/How-to-start-a-food-delivery-business.png" alt="delivery" />
-            <img src="https://jungleworks.com/wp-content/uploads/2021/08/1.png" alt="tracking" />
+          <div className="welcome-banner">
+            <div className="welcome-text">
+              <h1>Welcome, <span>Rohith Selvin Reddy Yeruva</span>!</h1>
+              <button className="logout-btn" onClick={handleLogout}>Logout</button>
+            </div>
+            <img src="https://jungleworks.com/wp-content/uploads/2021/08/1.png" alt="Delivery Banner" />
           </div>
 
           <div className="dashboard-container">
             <div className="main-dashboard">
               <div className="metrics">
-                <a className="card total" href="#orders">Total Orders: 125</a>
-                <a className="card in-transit" href="#intransit">In Transit: 58</a>
-                <a className="card delivered" href="#delivered">Delivered: 63</a>
-                <a className="card issues" href="#issues">Issues: 4</a>
+                <button className="card total" onClick={() => setActiveSection('all')}>Total Orders: 125</button>
+                <button className="card in-transit" onClick={() => setActiveSection('transit')}>In Transit: 58</button>
+                <button className="card delivered" onClick={() => setActiveSection('delivered')}>Delivered: 63</button>
+                <button className="card issues" onClick={() => setActiveSection('issues')}>Issues: 4</button>
               </div>
+
+              {activeSection && renderOrderList()}
 
               <div className="chart">
                 <Line data={chartData} options={chartOptions} />
               </div>
-            </div>
-
-            <div className="delivery-right-pane">
-              <h2>📦 Delivery Recipients</h2>
-              <ul>
-                {deliveryList.map((person, index) => (
-                  <li key={index}>
-                    <a href={`https://www.google.com/maps/search/${encodeURIComponent(person.address)}`} target="_blank" rel="noreferrer">
-                      {person.name} – {person.address}
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </>
