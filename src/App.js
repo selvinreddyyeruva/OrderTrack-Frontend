@@ -19,6 +19,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [activeSection, setActiveSection] = useState('');
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   useEffect(() => {
     const savedLogin = localStorage.getItem("isLoggedIn");
@@ -40,6 +41,15 @@ function App() {
     setEmail('');
     setPassword('');
   };
+
+  // Sample Order Details
+  const getOrderDetail = (orderNum) => ({
+    id: orderNum,
+    recipient: `Customer ${orderNum}`,
+    status: ['Processing', 'In Transit', 'Delivered', 'Issue'][orderNum % 4],
+    eta: `${2 + (orderNum % 3)} days`,
+    address: `10${orderNum} Main St, New Orleans, LA`
+  });
 
   const orders = {
     all: Array.from({ length: 125 }, (_, i) => `Order #${i + 1}`),
@@ -82,10 +92,32 @@ function App() {
       <div className="order-data">
         <h3>{activeSection && `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Orders`}</h3>
         <ul>
-          {list.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
+          {list.map((item, index) => {
+            const orderId = parseInt(item.match(/\d+/)[0], 10);
+            return (
+              <li key={index}>
+                <button className="order-link" onClick={() => setSelectedOrder(getOrderDetail(orderId))}>
+                  {item}
+                </button>
+              </li>
+            );
+          })}
         </ul>
+      </div>
+    );
+  };
+
+  const renderOrderDetails = () => {
+    if (!selectedOrder) return null;
+
+    return (
+      <div className="order-detail">
+        <h3>Order Details</h3>
+        <p><strong>Order ID:</strong> {selectedOrder.id}</p>
+        <p><strong>Recipient:</strong> {selectedOrder.recipient}</p>
+        <p><strong>Status:</strong> {selectedOrder.status}</p>
+        <p><strong>ETA:</strong> {selectedOrder.eta}</p>
+        <p><strong>Address:</strong> {selectedOrder.address}</p>
       </div>
     );
   };
@@ -126,6 +158,7 @@ function App() {
               </div>
 
               {activeSection && renderOrderList()}
+              {selectedOrder && renderOrderDetails()}
 
               <div className="chart">
                 <Line data={chartData} options={chartOptions} />
