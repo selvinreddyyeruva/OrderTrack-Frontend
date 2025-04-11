@@ -1,53 +1,96 @@
+/* App.css */
+
 .app {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding: 2rem;
-  background: #f4f6f8;
+  background-color: #f4f6f8;
+  min-height: 100vh;
 }
 
+/* Login Screen Styling */
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  margin: 3rem auto;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+}
+
+.login h2 {
+  margin-bottom: 1rem;
 }
 
 .login input {
   padding: 0.5rem;
-  width: 250px;
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .login button {
   padding: 0.5rem 1rem;
+  width: 100%;
   background: #0078d4;
   color: white;
   border: none;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
 }
 
+.login button:hover {
+  background-color: #005fa3;
+}
+
+/* Dashboard Metrics */
 .metrics {
   display: flex;
   justify-content: center;
-  gap: 2rem;
   flex-wrap: wrap;
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .card {
-  background: #ffffff;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   font-weight: bold;
-  min-width: 150px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  text-align: center;
+  transition: transform 0.2s;
 }
 
-.total { background-color: #e3f2fd; }
-.in-transit { background-color: #fff3cd; }
-.delivered { background-color: #d4edda; }
-.issues { background-color: #f8d7da; }
+.card:hover {
+  transform: scale(1.05);
+}
 
+.total {
+  background-color: #e3f2fd;
+}
+
+.in-transit {
+  background-color: #fff3cd;
+}
+
+.delivered {
+  background-color: #d4edda;
+}
+
+.issues {
+  background-color: #f8d7da;
+}
+
+/* Chart Container */
 .chart {
-  max-width: 600px;
+  max-width: 700px;
   margin: 3rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
