@@ -90,6 +90,13 @@ function App() {
     );
   };
 
+  const deliveryList = [
+    { name: 'Ankit Sharma', address: '123 Canal Street, New Orleans, LA' },
+    { name: 'Priya Mehra', address: '456 Bourbon St, New Orleans, LA' },
+    { name: 'Ravi Kumar', address: '789 Decatur St, New Orleans, LA' },
+    { name: 'Neha Reddy', address: '1010 Frenchmen St, New Orleans, LA' },
+  ];
+
   return (
     <div className="app">
       {!isLoggedIn ? (
@@ -123,6 +130,19 @@ function App() {
               <div className="chart">
                 <Line data={chartData} options={chartOptions} />
               </div>
+            </div>
+
+            <div className="delivery-right-pane">
+              <h2>📦 Delivery Recipients – New Orleans</h2>
+              <ul>
+                {deliveryList.map((person, index) => (
+                  <li key={index}>
+                    <a href={`https://www.google.com/maps/search/${encodeURIComponent(person.address)}`} target="_blank" rel="noreferrer">
+                      {person.name} – {person.address}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </>
